@@ -1,0 +1,18 @@
+---
+- hosts: web
+  tasks:
+    - name: copy some config
+      copy:
+        src: copy.html
+        dest: /tmp/
+      notify:
+        - restart-apache
+    - name: directory
+      file:
+        name: /tmp/test3
+        state: directory
+  handlers:
+    - name: restart-apache
+      service:
+        name: apache2
+        state: restarted

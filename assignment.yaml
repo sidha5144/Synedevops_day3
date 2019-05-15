@@ -1,0 +1,24 @@
+---
+- hosts: web
+  tasks:
+    - name: create a user named devops
+      user:
+        name: devops
+        state: present
+    - name: install apache2
+      apt: 
+        name: apache2
+        state: present
+    - name: check status of the apache service
+      service:
+        name: apache2
+        state: started
+    - name: create directory
+      file:
+        name: /var/www/html/webapp
+        mode: 0777
+        state: directory
+    - name: creating file
+      file:
+        name: /var/www/html/webapp/index.html
+        state: touch

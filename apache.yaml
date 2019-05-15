@@ -1,0 +1,15 @@
+---
+- hosts: web
+  tasks:
+    - name: install apache
+      apt:
+        name: apache2
+        state: present
+    - name: copy file
+      copy:
+        src: copy.html
+        dest: /var/www/html
+    - name: template module to copy file
+      template: 
+         src: copy.html.j2
+         dest: /var/www/html/template.html

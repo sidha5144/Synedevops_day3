@@ -1,0 +1,7 @@
+---
+- hosts: web
+  tasks:
+    - name: check status of the NTP service
+      service:
+        name: ntp
+        state: started

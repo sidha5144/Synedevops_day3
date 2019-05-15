@@ -1,0 +1,18 @@
+- hosts: web
+  tasks:
+    - name: add several users
+      user:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - testuser1
+        - testuser2
+    - name: multiple packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - apache2
+        - mysql-client
+        - vim
+        - gcc
